@@ -103,6 +103,11 @@ Jika function timeout, edit `vercel.json`:
 }
 ```
 
+### 2. Builds vs Functions Error
+Jika muncul error "The `functions` property cannot be used in conjunction with the `builds` property":
+- Hapus property `builds` dari `vercel.json`
+- Gunakan hanya `functions` dan `rewrites`
+
 ### 2. CORS Issues
 Headers CORS sudah dikonfigurasi di setiap endpoint:
 ```javascript
