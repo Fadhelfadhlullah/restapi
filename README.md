@@ -31,10 +31,40 @@ day25/
 
 ## Instalasi
 
-1. Clone repository
-2. Install dependencies:
+### Prerequisites
+- Node.js 18+
+- Docker & Docker Compose
+- Git
+
+### Setup Local Development
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/username/day25-rest-api.git
+   cd day25-rest-api
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
+   ```
+
+3. **Setup environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env file sesuai kebutuhan
+   ```
+
+4. **Start database dengan Docker**
+   ```bash
+   docker-compose up -d postgres redis
+   ```
+
+5. **Verify database connection**
+   ```bash
+   # Database akan otomatis ter-setup dengan sample data
+   # Akses pgAdmin di http://localhost:8080
+   # Email: admin@day25.com, Password: admin123
    ```
 
 ## Menjalankan Aplikasi
@@ -66,23 +96,59 @@ vercel
 vercel --prod
 ```
 
+### Docker Development
+```bash
+# Start semua services
+docker-compose up
+
+# Start hanya database
+docker-compose up -d postgres redis
+
+# Stop semua services
+docker-compose down
+
+# Rebuild dan start
+docker-compose up --build
+```
+
 ## API Endpoints
 
-### Local Development
-- `GET http://localhost:3000/api/items` - Mengambil semua item
-- `GET http://localhost:3000/api/items/:id` - Mengambil item berdasarkan ID
+### Items Management
+- `GET /api/items` - Get all items (with pagination, filtering, sorting)
+- `GET /api/items/:id` - Get item by ID
+- `POST /api/items` - Create new item
+- `PATCH /api/items/:id` - Update item (partial update)
+- `DELETE /api/items/:id` - Delete item
+- `GET /api/items/meta/categories` - Get all categories
 
-### Vercel Production
-- `GET https://your-app.vercel.app/api/items` - Mengambil semua item
-- `GET https://your-app.vercel.app/api/items/[id]` - Mengambil item berdasarkan ID
+### System
+- `GET /health` - Health check
+- `GET /` - API documentation
 
-Lihat `API_SPECIFICATION.md` untuk dokumentasi lengkap.
+Lihat `API_SPECIFICATION.md` dan `HTTP_STATUS_CODES.md` untuk dokumentasi lengkap.
 
 ## Teknologi
 
-- Node.js
-- Express.js
-- JSON (mock data)
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **PostgreSQL** - Primary database
+- **Redis** - Caching (optional)
+
+### Validation & Security
+- **Joi** - Data validation
+- **Helmet** - Security headers
+- **CORS** - Cross-origin resource sharing
+
+### Development & Deployment
+- **Docker & Docker Compose** - Containerization
+- **Vercel** - Serverless deployment
+- **Nodemon** - Development auto-reload
+
+### Database
+- **pg** - PostgreSQL client
+- **Connection pooling** - Optimized database connections
+- **Transactions** - ACID compliance
 
 ## Status Development
 

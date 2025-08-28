@@ -3,6 +3,13 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+require('dotenv').config();
+
+// Import database
+const { testConnection } = require('./config/database');
+
+// Import middleware
+const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
 // Import routes
 const itemsRoutes = require('./routes/items');
@@ -45,30 +52,33 @@ app.get('/', (req, res) => {
 });
 
 // 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Not Found',
-    message: `Route ${req.originalUrl} not found`,
-    statusCode: 404
-  });
-});
+app.use('*', notFoundHandler);
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    success: false,
-    error: 'Internal Server Error',
-    message: 'Something went wrong!',
-    statusCode: 500
-  });
-});
+// Global error handler
+app.use(errorHandler);
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 REST API Server running on port ${PORT}`);
-  console.log(`📖 API Documentation: http://localhost:${PORT}/`);
-  console.log(`🏥 Health Check: http://localhost:${PORT}/health`);
-  console.log(`📦 Items API: http://localhost:${PORT}/api/items`);
-});
+const startServer = async () => {
+  try {
+    // Test database connection
+    const dbConnected = await testConnection();
+    if (!dbConnected) {
+      console.error('❌ Failed to connect to database. Exiting...');
+      process.exit(1);
+    }
+
+    app.listen(PORT, () => {
+      console.log(`🚀 REST API Server running on port ${PORT}`);
+      console.log(`📖 API Documentation: http://localhost:${PORT}/`);
+      console.log(`🏥 Health Check: http://localhost:${PORT}/health`);
+      console.log(`📦 Items API: http://localhost:${PORT}/api/items`);
+      console.log(`🐘 Database: Connected to PostgreSQL`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
