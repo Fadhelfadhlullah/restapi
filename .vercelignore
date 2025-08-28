@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Development files
+src/
+.env.local
+.env.development
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock

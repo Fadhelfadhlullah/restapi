@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop Gaming",
+    "description": "High-performance gaming laptop with RTX graphics",
+    "price": 15000000,
+    "category": "electronics",
+    "stock": 5,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse with RGB lighting",
+    "price": 250000,
+    "category": "accessories",
+    "stock": 20,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "name": "Mechanical Keyboard",
+    "description": "RGB mechanical keyboard with blue switches",
+    "price": 800000,
+    "category": "accessories",
+    "stock": 15,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]
