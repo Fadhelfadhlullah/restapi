@@ -17,6 +17,8 @@ day25/
 │   └── items/
 │       ├── index.js        # GET /api/items
 │       └── [id].js         # GET /api/items/[id]
+├── public/                 # Static files untuk Vercel
+│   └── index.html          # API documentation page
 ├── data/
 │   └── items.json          # Mock data untuk production
 ├── package.json

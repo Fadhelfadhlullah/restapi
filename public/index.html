@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API - Day 25</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        .endpoint {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #4CAF50;
+        }
+        .method {
+            background: #4CAF50;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .url {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+        }
+        .description {
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .test-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .test-btn:hover {
+            background: #1976D2;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 REST API Documentation</h1>
+        
+        <div class="endpoint">
+            <span class="method">GET</span>
+            <div class="url" id="healthUrl">/health</div>
+            <div class="description">Health check endpoint - Returns server status</div>
+            <a href="#" class="test-btn" onclick="testEndpoint('/health')">Test Endpoint</a>
+        </div>
+
+        <div class="endpoint">
+            <span class="method">GET</span>
+            <div class="url" id="itemsUrl">/api/items</div>
+            <div class="description">Get all items - Returns array of all items</div>
+            <a href="#" class="test-btn" onclick="testEndpoint('/api/items')">Test Endpoint</a>
+        </div>
+
+        <div class="endpoint">
+            <span class="method">GET</span>
+            <div class="url" id="itemByIdUrl">/api/items/{id}</div>
+            <div class="description">Get item by ID - Returns specific item</div>
+            <a href="#" class="test-btn" onclick="testEndpoint('/api/items/1')">Test Endpoint</a>
+        </div>
+
+        <div class="footer">
+            <p>📖 <strong>API Version:</strong> 1.0.0</p>
+            <p>🔗 <strong>Base URL:</strong> <span id="baseUrl"></span></p>
+            <p>⚡ Powered by Vercel Serverless Functions</p>
+        </div>
+    </div>
+
+    <script>
+        // Set base URL dynamically
+        const baseUrl = window.location.origin;
+        document.getElementById('baseUrl').textContent = baseUrl;
+        
+        // Update URLs with base URL
+        document.getElementById('healthUrl').textContent = baseUrl + '/health';
+        document.getElementById('itemsUrl').textContent = baseUrl + '/api/items';
+        document.getElementById('itemByIdUrl').textContent = baseUrl + '/api/items/{id}';
+
+        function testEndpoint(endpoint) {
+            const fullUrl = baseUrl + endpoint;
+            window.open(fullUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

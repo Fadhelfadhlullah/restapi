@@ -23,3 +23,6 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+# Keep public folder for static files
+!public/

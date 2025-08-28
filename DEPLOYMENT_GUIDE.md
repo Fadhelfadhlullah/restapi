@@ -103,10 +103,16 @@ Jika function timeout, edit `vercel.json`:
 }
 ```
 
-### 2. Builds vs Functions Error
+### 2. Missing Public Directory Error
+Jika muncul error "No Output Directory named 'public' found":
+- Buat folder `public/` dengan file `index.html`
+- Update `vercel.json` untuk include static files build
+- Pastikan routing mengarah ke static files untuk root path
+
+### 3. Builds vs Functions Error
 Jika muncul error "The `functions` property cannot be used in conjunction with the `builds` property":
-- Hapus property `builds` dari `vercel.json`
-- Gunakan hanya `functions` dan `rewrites`
+- Gunakan `builds` dengan `@vercel/node` dan `@vercel/static`
+- Gunakan `routes` untuk routing configuration
 
 ### 2. CORS Issues
 Headers CORS sudah dikonfigurasi di setiap endpoint:
